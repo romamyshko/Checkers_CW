@@ -5,13 +5,80 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Checkers"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        
+        >
     <Grid Background="#FFB94E" MinWidth="800" MinHeight="500">
-        <TextBlock TextAlignment="Center" FontSize="48" FontWeight="ExtraBold" Margin="271,11,270,301" Foreground="#470047" FontStyle="Italic">CHECKERS</TextBlock>
-        <TextBlock TextAlignment="Center" FontSize="36" FontWeight="Bold" Margin="414,57,270,327" Foreground="#A02B68">classic</TextBlock>
-        <Button Margin="337,137,337,247" FontSize="24" MinWidth="126" MaxWidth="126" MinHeight="50" MaxHeight="50" Background="#F97134" RenderTransformOrigin="0.492,0.711" Foreground="#6F0B5B" FontWeight="Heavy">Play</Button>
-        <Button Margin="337,192,337,192" FontSize="24" MinWidth="126" MaxWidth="126" MinHeight="50" MaxHeight="50" Background="#F97134" FontWeight="Heavy" Foreground="#6F0B5B">Stats</Button>
-        <Button Margin="337,247,337,137" FontSize="24" MinWidth="126" MaxWidth="126" MinHeight="50" MaxHeight="50" Background="#F97134" FontWeight="Heavy" Foreground="#6F0B5B">Styles</Button>
-        <Button Margin="337,302,337,82" FontSize="24"  MinWidth="126" MaxWidth="126" MinHeight="50" MaxHeight="50" Background="#F97134" FontWeight="Heavy" Foreground="#6F0B5B" Content="Exit"/>
+        <TextBlock 
+            TextAlignment="Center" 
+            FontSize="48" 
+            FontWeight="ExtraBold" 
+            Margin="271,11,270,301" 
+            Foreground="#470047" 
+            FontStyle="Italic">
+            CHECKERS
+        </TextBlock>
+        <TextBlock 
+            TextAlignment="Center" 
+            FontSize="36" 
+            FontWeight="Bold" 
+            Margin="414,57,270,327" 
+            Foreground="#A02B68">
+            classic
+        </TextBlock>
+        <Button 
+            Margin="267,107,267,277" 
+            FontSize="24" 
+            MinWidth="200" 
+            MaxWidth="200" 
+            MinHeight="50" 
+            MaxHeight="50" 
+            Background="#F97134" 
+            RenderTransformOrigin="0.492,0.711" 
+            Foreground="#6F0B5B" 
+            FontWeight="Heavy"
+            Content="Play" 
+            Command="{Binding GameWithAICommand}"
+        />
+
+        <Button 
+            Margin="267,179,267,239" 
+            FontSize="24" 
+            MinWidth="200" 
+            MaxWidth="200" 
+            MinHeight="50" 
+            MaxHeight="50" 
+            Background="#F97134" 
+            FontWeight="Heavy" 
+            Foreground="#6F0B5B" 
+            Content="Stats"
+        />
+        <Button 
+            Margin="272,240,272,190" 
+            FontSize="24" 
+            MinWidth="200" 
+            MaxWidth="200" 
+            MinHeight="50" 
+            MaxHeight="50" 
+            Background="#F97134" 
+            FontWeight="Heavy" 
+            Foreground="#6F0B5B"
+            Content="Styles"
+        />
+        <Button 
+            Margin="267,304,267,144" 
+            FontSize="24"  
+            MinWidth="200" 
+            MaxWidth="200" 
+            MinHeight="50" 
+            MaxHeight="50" 
+            Background="#F97134" 
+            FontWeight="Heavy" 
+            Foreground="#6F0B5B" 
+            Content="Exit"
+            Command="{Binding ExitCommand}"
+        />
     </Grid>
 </Window>
