@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using Checkers.Services.Logger;
 using Checkers.Views;
 
 namespace Checkers.Models
@@ -27,6 +29,7 @@ namespace Checkers.Models
         private string _timePassed;
         private readonly DispatcherTimer _commonTimer;
         private DateTime _commonTime;
+        private Logger _logger;
 
 
         public GameWithAIModel()
@@ -43,6 +46,7 @@ namespace Checkers.Models
             _timeMove = new DateTime();
             _commonTime = new DateTime();
             _timePassed = "00:00:00";
+            _logger = new Logger(new AuditLog());
         }
 
         private void CommonTimerTick(object sender, EventArgs e)
@@ -62,13 +66,15 @@ namespace Checkers.Models
             View = view;
             View.GridMain.Visibility = Visibility.Hidden;
             
-            Turn = "White";
+            Turn = "Black";
             MakeBoard();
             View.GridMain.Visibility = Visibility.Visible;
+
             _commonTimer.Start();
             _timerMove.Start();
           
-            View.StatusText.Text = "White's turn";
+            View.StatusText.Text = "Black's turn";
+            _logger.LogInfo(View.StatusText.Text);
             View.DataGridHistoryMove.ItemsSource = _observableHistoryMove;
             View.ScoreBlacksLeft.Text = "12";
             View.ScoreBlacksTaked.Text = "0";
@@ -136,6 +142,7 @@ namespace Checkers.Models
                     {
                         ImageSource = new BitmapImage(new Uri(@"C:\Users\romam\Desktop\Checkers_CW\Checkers\Checkers\Images\checkerBlack.png", UriKind.Absolute))
                     };
+
                     switch (r)
                     {
                         case 1:
@@ -202,6 +209,7 @@ namespace Checkers.Models
                                 stackPanel.Children.Add(button);
                             }
                             break;
+
                     }
                 }
             }
@@ -224,7 +232,9 @@ namespace Checkers.Models
             var stackPanel = (StackPanel)button.Parent;
             var row = Grid.GetRow(stackPanel);
             var col = Grid.GetColumn(stackPanel);
-            Console.WriteLine("Row: " + row + "Column: "+ col); //TODO ADD LOGGER
+
+            _logger.LogInfo("Row: " + row + " Column: " + col);
+
             if (CurrentMove == null)
                 CurrentMove = new Move();
             if (CurrentMove.Piece1 == null)
@@ -259,12 +269,12 @@ namespace Checkers.Models
                 case "Black" when button1.Name.Contains("White"):
                     CurrentMove.Piece1 = null;
                     CurrentMove.Piece2 = null;
-                    DisplayMessage("Black's turn.");
+                    _logger.LogInfo("Black's turn.");
                     return false;
                 case "White" when button1.Name.Contains("Black"):
                     CurrentMove.Piece1 = null;
                     CurrentMove.Piece2 = null;
-                    DisplayMessage("White's turn");
+                    _logger.LogInfo("White's turn.");
                     return false;
             }
 
@@ -281,7 +291,9 @@ namespace Checkers.Models
                 return CheckMoveWhite(button1, button2);
             CurrentMove.Piece1 = null;
             CurrentMove.Piece2 = null;
-            Console.WriteLine("CheckMove: False"); //TODO LOGGER
+
+            _logger.LogWarning("CheckMove: False");
+
             return false;
         }
 
@@ -300,10 +312,10 @@ namespace Checkers.Models
 
                 if (invalid)
                 {
-                    DisplayMessage("You must beat the piece.");
+                    _logger.LogWarning("You must beat the piece.");
                     CurrentMove.Piece1 = null;
                     CurrentMove.Piece2 = null;
-                    Console.WriteLine("CheckMoveWhite: False");
+                    _logger.LogWarning("CheckMoveWhite: False");
                     return false;
                 }
             }
@@ -349,7 +361,7 @@ namespace Checkers.Models
                 }
 
             CurrentMove = null;
-            DisplayMessage("Unreachable turn. Repeat again."); //TODO LOGGER
+            _logger.LogWarning("Unreachable turn. Repeat again.");
             return false;
         }
 
@@ -368,10 +380,10 @@ namespace Checkers.Models
 
                 if (invalid)
                 {
-                    DisplayMessage("You must beat the piece.");
+                    _logger.LogWarning("You must beat the piece.");
                     CurrentMove.Piece1 = null;
                     CurrentMove.Piece2 = null;
-                    Console.WriteLine("CheckerMoveBlack: False");
+                    _logger.LogWarning("CheckerMoveBlack: False");
                     return false;
                 }
             }
@@ -416,27 +428,34 @@ namespace Checkers.Models
                     }
                 }
             CurrentMove = null;
-            DisplayMessage("Unreachable turn. Try again.");
+            _logger.LogWarning("Unreachable turn. Try again.");
             return false;
         }
 
         public void MakeMove()
         {
-            Console.WriteLine("Piece1: row = " + CurrentMove.Piece1.Row +
-                              ", col = " + CurrentMove.Piece1.Column);
-            Console.WriteLine("Piece2: row = " + CurrentMove.Piece2.Row +
-                              ", col = " + CurrentMove.Piece2.Column);
+
+            _logger.LogInfo("Piece1: row = " + CurrentMove.Piece1.Row +
+                            ", col = " + CurrentMove.Piece1.Column);
+            _logger.LogInfo("Piece2: row = " + CurrentMove.Piece2.Row +
+                            ", col = " + CurrentMove.Piece2.Column);
 
             var stackPanel1 = (StackPanel)GetGridElement(View.CheckersGrid, CurrentMove.Piece1.Row, CurrentMove.Piece1.Column);
             var stackPanel2 = (StackPanel)GetGridElement(View.CheckersGrid, CurrentMove.Piece2.Row, CurrentMove.Piece2.Column);
+
             View.CheckersGrid.Children.Remove(stackPanel1);
             View.CheckersGrid.Children.Remove(stackPanel2);
+
             Grid.SetRow(stackPanel1, CurrentMove.Piece2.Row);
             Grid.SetColumn(stackPanel1, CurrentMove.Piece2.Column);
+
             View.CheckersGrid.Children.Add(stackPanel1);
+
             Grid.SetRow(stackPanel2, CurrentMove.Piece1.Row);
             Grid.SetColumn(stackPanel2, CurrentMove.Piece1.Column);
+
             View.CheckersGrid.Children.Add(stackPanel2);
+
             CheckKing(CurrentMove.Piece2);
                 
             var tempCount = 0;
@@ -477,7 +496,10 @@ namespace Checkers.Models
                     View.StatusText.Text = "Black's turn";
                     Turn = "Black";
                     break;
+
             }
+
+            _logger.LogInfo(View.StatusText.Text);
 
             CheckWin();
         }
@@ -617,7 +639,7 @@ namespace Checkers.Models
                         } 
                     } 
                 }
-
+                //TODO add options to start new game to return the menu so on
                 StartNewGame();
             } 
         } 
@@ -647,29 +669,6 @@ namespace Checkers.Models
             _commonTimer.Start();
 
             _numberMove = 1;
-        }
-
-
-        private void DisplayMessage(string msg)
-        {
-            /*var message = new SnackbarMessage
-            {
-                Content = msg.ToUpper(),
-            };
-            View.StatusText.Text = msg;
-            View.Snackbar.Message = message;
-            View.Snackbar.IsActive = true;
-
-            var seconds = 0;
-            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-            timer.Tick += (o, e) => {
-                seconds++;
-                if (seconds != 3)
-                    return;
-                View.Snackbar.IsActive = false;
-                timer.Stop();
-            };
-            timer.Start();*/
         }
     }
 }
