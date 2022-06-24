@@ -639,8 +639,11 @@ namespace Checkers.Models
                         } 
                     } 
                 }
-                //TODO add options to start new game to return the menu so on
-                StartNewGame();
+
+                _timerMove.Tick -= TimerMove_Tick;
+                _commonTimer.Tick -= CommonTimerTick;
+
+                MessageBox.Show(View, $"{Winner} wins!", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
             } 
         } 
 

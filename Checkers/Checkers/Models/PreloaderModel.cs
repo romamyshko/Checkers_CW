@@ -25,7 +25,6 @@ namespace Checkers.Models
             {
                 _gameWithAIModel.InitializeView(new GameWithAIWindow());
                 _gameWithAIModel.View.Show();
-                throw new NotImplementedException();
             }
             catch (Exception e)
             {
