@@ -6,35 +6,28 @@ using System.Threading.Tasks;
 using Checkers.Models;
 using Checkers.Views;
 using System.Windows;
+using System.Windows.Input;
 using Checkers.ViewModels.Commands;
 
 namespace Checkers.ViewModels
 {
     public class PreloaderViewModel : BaseViewModel
     {
-        private readonly PreloaderModel _gamePreloaderModel;
+        public ICommand ExitCommand { get; set; }
+        public ICommand GameWithAICommand { get; set; }
+        public ICommand ChangeStyleCommand { get; set; }
+        public ICommand StatisticsCommand { get; set; }
 
+        private readonly PreloaderModel _gamePreloaderModel;
+        
         public PreloaderViewModel(PreloaderModel gamePreloaderModel)
         {
             _gamePreloaderModel = gamePreloaderModel;
 
-            ExitCommand = new RelayCommand(Exit);
-            GameWithAICommand = new RelayCommand(GameWithComputer);
-            //OnlineGameClientCommand = new RelayCommand(OnlineGameClient);
-            //OnlineGameServerCommand = new RelayCommand(OnlineGameServer);
-        }
-
-        public RelayCommand GameWithAICommand { get; set; }
-        private void GameWithComputer(object obj)
-        {
-            _gamePreloaderModel.StartNewGameWithAI();
-            MainWindow.Instance.Hide();
-        }
-
-        public RelayCommand ExitCommand { get; set; }
-        private static void Exit(object obj)
-        {
-            Application.Current.Shutdown();
+            ExitCommand = new ExitCommand();
+            GameWithAICommand = new GameWithAICommand(_gamePreloaderModel);
+            ChangeStyleCommand = new ChangeStyleCommand();
+            StatisticsCommand = new StatisticsCommand();
         }
     }
 }

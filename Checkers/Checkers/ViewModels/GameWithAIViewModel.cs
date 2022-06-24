@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using Checkers.Models;
 using Checkers.ViewModels.Commands;
 using Checkers.Views;
@@ -13,6 +14,13 @@ namespace Checkers.ViewModels
     public class GameWithAIViewModel : BaseViewModel
     {
         private readonly IGameWithAIModel _gameWithAIModel;
+        private Visibility _infoPanelVisibility;
+        private bool _isCheckInfoPanel;
+        private string _statusText;
+        private string _timePassed;
+        public ICommand ExitCommand { get; set; }
+        public ICommand ExitToMenuCommand { get; set; }
+        public ICommand NewGameCommand { get; set; }
 
         public GameWithAIViewModel(IGameWithAIModel gameWithAIModel)
         {
@@ -24,32 +32,11 @@ namespace Checkers.ViewModels
             StatusText = "";
             TimePassed = "00:00:00";
 
-            ExitCommand = new RelayCommand(Exit);
-            ExitToMenuCommand = new RelayCommand(ExitToMenu);
-            NewGameCommand = new RelayCommand(NewGame);
+            ExitCommand = new ExitCommand();
+            ExitToMenuCommand = new ExitToMenuCommand(gameWithAIModel);
+            NewGameCommand = new NewGameCommand(gameWithAIModel, this);
         }
 
-        public RelayCommand ExitCommand { get; set; }
-        private static void Exit(object obj)
-        {
-            Application.Current.Shutdown();
-        }
-
-        public RelayCommand ExitToMenuCommand { get; set; }
-        private void ExitToMenu(object obj)
-        {
-            _gameWithAIModel.View.Close();
-            MainWindow.Instance.Show();
-        }
-
-        public RelayCommand NewGameCommand { get; set; }
-        private void NewGame(object obj)
-        {
-            StatusText = "Black's turn.";
-            _gameWithAIModel.StartNewGame();
-        }
-
-        private Visibility _infoPanelVisibility;
         public Visibility InfoPanelVisibility
         {
             get => _infoPanelVisibility;
@@ -60,7 +47,6 @@ namespace Checkers.ViewModels
             }
         } 
 
-        private bool _isCheckInfoPanel;
         public bool IsCheckInfoPanel
         {
             get => _isCheckInfoPanel;
@@ -71,7 +57,6 @@ namespace Checkers.ViewModels
             } 
         }
 
-        private string _statusText;
         public string StatusText
         {
             get => _statusText;
@@ -82,7 +67,6 @@ namespace Checkers.ViewModels
             }
         } 
 
-        private string _timePassed;
         public string TimePassed
         {
             get => _timePassed;
