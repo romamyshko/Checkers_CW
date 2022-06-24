@@ -7,32 +7,27 @@ using System.Windows.Input;
 
 namespace Checkers.ViewModels.Commands
 {
-    public class RelayCommand : ICommand
+    public class ChangeStyleCommand : ICommand
     {
-        private readonly Action<object> _execute;
-
-        private readonly Func<object, bool>? _canExecute;
-
         public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
         }
 
-        public RelayCommand(Action<object> execute, Func<object, bool>? canExecute = null)
+        public ChangeStyleCommand()
         {
-            _execute = execute;
-            _canExecute = canExecute;
+           
         }
 
         public bool CanExecute(object? parameter)
         {
-            return true; //parameter != null && (_canExecute == null || _canExecute(parameter));
+            return true;
         }
 
         public void Execute(object? parameter)
         {
-            _execute(parameter);
+            
         }
     }
 }

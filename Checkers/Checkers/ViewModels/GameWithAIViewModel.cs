@@ -13,7 +13,6 @@ namespace Checkers.ViewModels
 {
     public class GameWithAIViewModel : BaseViewModel
     {
-        private readonly IGameWithAIModel _gameWithAIModel;
         private Visibility _infoPanelVisibility;
         private bool _isCheckInfoPanel;
         private string _statusText;
@@ -24,8 +23,6 @@ namespace Checkers.ViewModels
 
         public GameWithAIViewModel(IGameWithAIModel gameWithAIModel)
         {
-          
-            _gameWithAIModel = gameWithAIModel;
             InfoPanelVisibility = 0;
             IsCheckInfoPanel = true;
 
