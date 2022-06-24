@@ -11,6 +11,11 @@ namespace Checkers.Models
     {
         private readonly IGameWithAIModel _gameWithAIModel;
 
+        public PreloaderModel(IGameWithAIModel gameWithAiModel)
+        {
+            _gameWithAIModel = gameWithAiModel;
+        }
+
         public void StartNewGameWithAI()
         {
             _gameWithAIModel.InitializeView(new GameWithAIWindow());

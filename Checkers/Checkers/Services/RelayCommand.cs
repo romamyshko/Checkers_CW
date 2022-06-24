@@ -27,12 +27,12 @@ namespace Checkers.Services
 
         public bool CanExecute(object? parameter)
         {
-            return parameter != null && (_canExecute == null || _canExecute(parameter));
+            return true; //parameter != null && (_canExecute == null || _canExecute(parameter));
         }
 
         public void Execute(object? parameter)
         {
-            if (parameter != null) _execute(parameter);
+            _execute(parameter);
         }
     }
 }

@@ -8,8 +8,14 @@ namespace Checkers.Models
 {
     public class Move
     {
-        public Piece Piece1 { get; }
-        public Piece Piece2 { get; }
+        public Piece Piece1 { get; set; }
+        public Piece Piece2 { get; set; }
+
+        public Move()
+        {
+            Piece1 = null!;
+            Piece2 = null!;
+        }
 
         public Move(Piece p1, Piece p2)
         {
