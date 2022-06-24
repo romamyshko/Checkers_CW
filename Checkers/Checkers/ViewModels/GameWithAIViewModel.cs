@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Checkers.Models;
-using Checkers.Services;
+using Checkers.ViewModels.Commands;
+using Checkers.Views;
 
 namespace Checkers.ViewModels
 {
@@ -15,6 +16,7 @@ namespace Checkers.ViewModels
 
         public GameWithAIViewModel(IGameWithAIModel gameWithAIModel)
         {
+          
             _gameWithAIModel = gameWithAIModel;
             InfoPanelVisibility = 0;
             IsCheckInfoPanel = true;
@@ -37,6 +39,7 @@ namespace Checkers.ViewModels
         private void ExitToMenu(object obj)
         {
             _gameWithAIModel.View.Close();
+            MainWindow.Instance.Show();
         }
 
         public RelayCommand NewGameCommand { get; set; }

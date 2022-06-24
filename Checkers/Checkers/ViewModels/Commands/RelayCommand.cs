@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Checkers.Services
+namespace Checkers.ViewModels.Commands
 {
     public class RelayCommand : ICommand
     {

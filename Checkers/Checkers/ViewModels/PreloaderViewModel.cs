@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Checkers.Models;
-using Checkers.Services;
 using Checkers.Views;
 using System.Windows;
+using Checkers.ViewModels.Commands;
 
 namespace Checkers.ViewModels
 {
@@ -28,6 +28,7 @@ namespace Checkers.ViewModels
         private void GameWithComputer(object obj)
         {
             _gamePreloaderModel.StartNewGameWithAI();
+            MainWindow.Instance.Hide();
         }
 
         public RelayCommand ExitCommand { get; set; }

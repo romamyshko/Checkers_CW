@@ -383,6 +383,8 @@
             </StatusBarItem>
         </StatusBar>
 
-        
+        <Button Content="Main menu" MaxWidth="200" Background="#F97134" FontWeight="Heavy" 
+                Foreground="#6F0B5B" Command="{Binding ExitToMenuCommand}" Margin="756,12,41,2"/>
+
     </Grid>
 </Window>

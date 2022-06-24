@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Checkers.Models;
+using Checkers.ViewModels;
 
 namespace Checkers.Views
 {
@@ -22,6 +24,7 @@ namespace Checkers.Views
         public GameWithAIWindow()
         {
             InitializeComponent();
+            DataContext = new GameWithAIViewModel(new GameWithAIModel() { View = this});
         }
     }
 }
