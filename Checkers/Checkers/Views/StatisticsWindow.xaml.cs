@@ -24,7 +24,7 @@ namespace Checkers.Views
         public StatisticsWindow()
         {
             InitializeComponent();
-            DataContext = new StatisticsViewModel(this);
+            DataContext = new StatisticsViewModel(new StatisticsModel(this));
         }
 
     }

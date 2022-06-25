@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Checkers.Models;
 using Checkers.ViewModels.Commands;
 using Checkers.Views;
 
@@ -16,9 +17,9 @@ namespace Checkers.ViewModels
         public ICommand ExportJSONCommand { get; set; }
         public ICommand ExportXMLCommand { get; set; }
 
-        public StatisticsViewModel(StatisticsWindow view)
+        public StatisticsViewModel(StatisticsModel model)
         {
-            ExitToMenuCommand = new ExitToMenuCommand(view);
+            ExitToMenuCommand = new ExitToMenuCommand(model.View);
         }
     }
 }

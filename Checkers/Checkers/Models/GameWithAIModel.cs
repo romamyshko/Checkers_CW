@@ -20,7 +20,7 @@ namespace Checkers.Models
     {
         public GameWithAIWindow View { get; set; }
         public Move CurrentMove { get; set; }
-        public string Winner { get; set; }
+        public string Winner { get; set; }  
         public string Turn { get; set; }
 
         private readonly ObservableCollection<HistoryMove> _observableHistoryMove;
@@ -648,8 +648,8 @@ namespace Checkers.Models
 
                 var playerIsWinner = Winner.Equals("Black");
 
-                var user = new User("Roma", playerIsWinner ? 1 : 0, playerIsWinner ? 0 : 1,
-                    TimeSpan.Parse(View.TextBlockTimePassed.Text));
+                var user = new User(json.GetLastId() + 1, "Roma", playerIsWinner ? 1 : 0, playerIsWinner ? 0 : 1,
+                    View.TextBlockTimePassed.Text);
 
                 json.WriteUser(user);
                 xml.WriteUser(user);

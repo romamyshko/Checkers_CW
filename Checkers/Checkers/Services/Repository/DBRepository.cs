@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using Checkers.Models;
+using Checkers.Services.Logger;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Checkers.Services.Repository
@@ -11,6 +12,7 @@ namespace Checkers.Services.Repository
     public abstract class DBRepository
     {
         protected readonly string _filePath;
+        protected readonly Logger.Logger _logger = new(new FileLog("D:\\fileLogs.txt"));
 
         protected DBRepository()
         {
@@ -29,11 +31,18 @@ namespace Checkers.Services.Repository
             _filePath = filePath;
         }
 
-        public List<User> GetData()
+        public IEnumerable<User> GetData()
         {
-            var data = File.ReadAllText(_filePath);
-
-            return DeserializeUsers(data);
+            try
+            {
+                var data = File.ReadAllText(_filePath);
+                return DeserializeUsers(data);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                return Enumerable.Empty<User>();
+            }
         }
 
         public void WriteUser(User user)
@@ -43,22 +52,48 @@ namespace Checkers.Services.Repository
 
         public void WriteUsers(List<User> users)
         {
-
-            if (File.Exists(_filePath))
+            try
             {
-                var currentData = GetData();
-                users.AddRange(currentData);
-                File.Delete(_filePath);
+                if (File.Exists(_filePath))
+                {
+                    var currentData = GetData();
+                    users.AddRange(currentData);
+                    File.Delete(_filePath);
+                }
+
+                var serialized = SerializeUsers(users);
+                File.WriteAllText(_filePath, serialized);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+            }
+        }
+
+        public int GetLastId()
+        {
+            var data = GetData().Select(a => a.Number);
+
+            if (data.Any())
+            {
+                return data.Max();
             }
 
-            var serialized = SerializeUsers(users);
-
-            File.WriteAllText(_filePath, serialized);
+            return 0;
         }
 
         public void ExportAllData(string fileDestination, List<User> data)
         {
-            File.WriteAllText(fileDestination, SerializeUsers(data));
+
+            try
+            {
+                File.WriteAllText(fileDestination, SerializeUsers(data));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+            }
+           
         }
 
         protected abstract string SerializeUsers(List<User> users);

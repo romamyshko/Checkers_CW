@@ -13,17 +13,19 @@ namespace Checkers.Models
             
         }
 
-        public User(string username, int wins, int loses, TimeSpan playedTime)
+        public User(int number, string username, int wins, int loses, string playedTime)
         {
+            Number = number;
             Username = username;
             Wins = wins;
             Loses = loses;
-            PlayedTime = playedTime;
+            TotalTime = playedTime;
         }
 
+        public int Number { get; set; }
         public string Username { get; set; }
         public int Wins { get; set; }
         public int Loses { get; set; }
-        public TimeSpan PlayedTime { get; set; }
+        public string TotalTime { get; set; }
     }
 }
