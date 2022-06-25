@@ -15,13 +15,15 @@ namespace Checkers.ViewModels
     {
         public ICommand ImportUsersDataCommand { get; set; }
         public ICommand ExitToMenuCommand { get; set; }
-        public ICommand ExportJSONCommand { get; set; }
-        public ICommand ExportXMLCommand { get; set; }
+        public ICommand ExportUsersInJSONCommand { get; set; }
+        public ICommand ExportUsersInXMLCommand { get; set; }
 
         public StatisticsViewModel()
         {
             ExitToMenuCommand = new ExitToMenuCommand(StatisticsModel.View);
             ImportUsersDataCommand = new ImportUsersDataCommand();
+            ExportUsersInJSONCommand = new ExportUsersInJSONCommand();
+            ExportUsersInXMLCommand = new ExportUsersInXMLCommand();
         }
     }
 }

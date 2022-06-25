@@ -33,7 +33,7 @@ namespace Checkers.Services.Repository
         protected override List<User> DeserializeUsers(string serializedUsers)
         {
             var serializer = new XmlSerializer(typeof(List<User>));
-            using (var reader = XmlReader.Create(FilePath))
+            using (var reader = XmlReader.Create(ImportFilePath))
             {
                 return (List<User>)serializer.Deserialize(reader);
             }

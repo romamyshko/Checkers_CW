@@ -32,11 +32,18 @@ namespace Checkers.Services.Repository
             FilePath = filePath;
         }
 
-        public IEnumerable<User> GetData()
+        public IEnumerable<User> GetData(bool xmlImportStatistics = false)
         {
             try
             {
                 var data = File.ReadAllText(FilePath);
+
+                if (xmlImportStatistics)
+                {
+                    var json = new Json(FilePath);
+                    return json.DeserializeUsers(data);
+                }
+
                 return DeserializeUsers(data);
             }
             catch (Exception e)
@@ -65,18 +72,29 @@ namespace Checkers.Services.Repository
             WriteUsers(new List<User>() {user});
         }
 
-        public void WriteUsers(List<User> users)
+        public void WriteUsers(List<User> users, bool isStatistics = false)
         {
             try
             {
                 if (File.Exists(FilePath))
                 {
-                    var currentData = GetData();
+                    var currentData = GetData(true);
                     users.AddRange(currentData);
                     File.Delete(FilePath);
                 }
 
-                var serialized = SerializeUsers(users);
+                string serialized = String.Empty;
+
+                if (isStatistics)
+                {
+                    var json = new Json(FilePath);
+                    serialized = json.SerializeUsers(users);
+                }
+                else
+                {
+                    serialized = SerializeUsers(users);
+                }
+
                 File.WriteAllText(FilePath, serialized);
             }
             catch (Exception e)
@@ -102,7 +120,16 @@ namespace Checkers.Services.Repository
 
             try
             {
-                File.WriteAllText(fileDestination, SerializeUsers(data));
+                var serialized = SerializeUsers(data);
+
+                if (File.Exists(fileDestination))
+                {
+                    File.AppendAllText(fileDestination, serialized);
+                }
+                else
+                {
+                    File.WriteAllText(fileDestination, serialized);
+                }
             }
             catch (Exception e)
             {

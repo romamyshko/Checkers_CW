@@ -25,9 +25,16 @@ namespace Checkers.Services.Commands
 
         public void Execute(object? parameter)
         {
-            var import = new Json();
+            DBRepository import = new Json();
             import.FilePath = "D:\\users.json";
-            import.WriteUsers(import.GetImportData().ToList());
+            if (import.ImportFilePath.Contains(".xml"))
+            {
+                var importFilePath = import.ImportFilePath;
+                import = new Xml(import.FilePath);
+                import.ImportFilePath = importFilePath;
+            }
+
+            import.WriteUsers(import.GetImportData().ToList(), true);
             StatisticsModel.UpdateGrid();
         }
     }
