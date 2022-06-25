@@ -32,13 +32,13 @@ namespace Checkers.Services.Repository
             FilePath = filePath;
         }
 
-        public IEnumerable<User> GetData(bool xmlImportStatistics = false)
+        public IEnumerable<User> GetData(bool xml = false)
         {
             try
             {
                 var data = File.ReadAllText(FilePath);
 
-                if (xmlImportStatistics)
+                if (xml)
                 {
                     var json = new Json(FilePath);
                     return json.DeserializeUsers(data);
