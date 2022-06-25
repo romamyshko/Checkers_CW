@@ -25,7 +25,7 @@
             AutoGenerateColumns="False" 
             GridLinesVisibility="All" 
             SelectionUnit="FullRow" 
-            SelectionMode="Single" 
+            SelectionMode="Single"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             ScrollViewer.HorizontalScrollBarVisibility="Auto" 
             CanUserAddRows="False" 

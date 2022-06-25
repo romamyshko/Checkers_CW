@@ -11,31 +11,46 @@ namespace Checkers.Services.Repository
 {
     public abstract class DBRepository
     {
-        protected readonly string _filePath;
         protected readonly Logger.Logger _logger = new(new FileLog("D:\\fileLogs.txt"));
+
+        public string FilePath { get; set; }
+        public string ImportFilePath { get; set; } = String.Empty;
 
         protected DBRepository()
         {
             var dialog = new CommonOpenFileDialog();
-            dialog.IsFolderPicker = true;
             var result = dialog.ShowDialog();
 
             if (result == CommonFileDialogResult.Ok)
             {
-                _filePath = dialog.FileName;
+                ImportFilePath = dialog.FileName;
             }
         }
 
         protected DBRepository(string filePath)
         {
-            _filePath = filePath;
+            FilePath = filePath;
         }
 
         public IEnumerable<User> GetData()
         {
             try
             {
-                var data = File.ReadAllText(_filePath);
+                var data = File.ReadAllText(FilePath);
+                return DeserializeUsers(data);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                return Enumerable.Empty<User>();
+            }
+        }
+
+        public IEnumerable<User> GetImportData()
+        {
+            try
+            {
+                var data = File.ReadAllText(ImportFilePath);
                 return DeserializeUsers(data);
             }
             catch (Exception e)
@@ -54,15 +69,15 @@ namespace Checkers.Services.Repository
         {
             try
             {
-                if (File.Exists(_filePath))
+                if (File.Exists(FilePath))
                 {
                     var currentData = GetData();
                     users.AddRange(currentData);
-                    File.Delete(_filePath);
+                    File.Delete(FilePath);
                 }
 
                 var serialized = SerializeUsers(users);
-                File.WriteAllText(_filePath, serialized);
+                File.WriteAllText(FilePath, serialized);
             }
             catch (Exception e)
             {

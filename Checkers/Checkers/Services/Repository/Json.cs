@@ -6,6 +6,11 @@ namespace Checkers.Services.Repository
 {
     public sealed class Json : DBRepository
     {
+        public Json() : base()
+        {
+            
+        }
+
         public Json(string filePath) : base(filePath)
         {
             

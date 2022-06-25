@@ -11,15 +11,13 @@ namespace Checkers.Models
 {
     public class StatisticsModel
     {
-        private readonly ObservableCollection<User> _users;
-        private DBRepository _dbRepository;
+        private static ObservableCollection<User> _users;
+        private static DBRepository _dbRepository;
 
-        public StatisticsWindow View { get; set; }
+        public static StatisticsWindow View { get; set; }
         
-
-        public StatisticsModel(StatisticsWindow view)
+        public static void UpdateGrid()
         {
-            View = view;
             _users = new ObservableCollection<User>();
             _dbRepository = new Json("D:\\users.json");
 
