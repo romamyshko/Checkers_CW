@@ -54,6 +54,7 @@
             FontWeight="Heavy" 
             Foreground="#6F0B5B" 
             Content="Stats"
+            Command="{Binding StatisticsCommand}"
         />
         <Button 
             Margin="272,240,272,190" 

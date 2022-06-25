@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using Checkers.Services.Logger;
+using Checkers.Services.Repository;
 using Checkers.Views;
 
 namespace Checkers.Models
@@ -23,14 +24,13 @@ namespace Checkers.Models
         public string Turn { get; set; }
 
         private readonly ObservableCollection<HistoryMove> _observableHistoryMove;
+        private readonly Logger _logger;
         private int _numberMove;
         private readonly DispatcherTimer _timerMove;
         private DateTime _timeMove;
         private string _timePassed;
         private readonly DispatcherTimer _commonTimer;
         private DateTime _commonTime;
-        private Logger _logger;
-
 
         public GameWithAIModel()
         {
@@ -642,6 +642,17 @@ namespace Checkers.Models
 
                 _timerMove.Tick -= TimerMove_Tick;
                 _commonTimer.Tick -= CommonTimerTick;
+
+                var json = new Json("D:\\users.json");
+                var xml = new Xml("D:\\users.xml");
+
+                var playerIsWinner = Winner.Equals("Black");
+
+                var user = new User("Roma", playerIsWinner ? 1 : 0, playerIsWinner ? 0 : 1,
+                    TimeSpan.Parse(View.TextBlockTimePassed.Text));
+
+                json.WriteUser(user);
+                xml.WriteUser(user);
 
                 MessageBox.Show(View, $"{Winner} wins!", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
             } 

@@ -11,7 +11,7 @@ using Checkers.Views;
 
 namespace Checkers.ViewModels
 {
-    public class GameWithAIViewModel : BaseViewModel
+    public class GameWithAIViewModel : ViewModelBase
     {
         private Visibility _infoPanelVisibility;
         private bool _isCheckInfoPanel;
@@ -30,7 +30,7 @@ namespace Checkers.ViewModels
             TimePassed = "00:00:00";
 
             ExitCommand = new ExitCommand();
-            ExitToMenuCommand = new ExitToMenuCommand(gameWithAIModel);
+            ExitToMenuCommand = new ExitToMenuCommand(gameWithAIModel.View);
             NewGameCommand = new NewGameCommand(gameWithAIModel, this);
         }
 

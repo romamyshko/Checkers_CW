@@ -11,7 +11,7 @@ using Checkers.ViewModels.Commands;
 
 namespace Checkers.ViewModels
 {
-    public class PreloaderViewModel : BaseViewModel
+    public class PreloaderViewModel : ViewModelBase
     {
         public ICommand ExitCommand { get; set; }
         public ICommand GameWithAICommand { get; set; }
@@ -27,7 +27,7 @@ namespace Checkers.ViewModels
             ExitCommand = new ExitCommand();
             GameWithAICommand = new GameWithAICommand(_gamePreloaderModel);
             ChangeStyleCommand = new ChangeStyleCommand();
-            StatisticsCommand = new StatisticsCommand();
+            StatisticsCommand = new StatisticsCommand(new StatisticsWindow());
         }
     }
 }

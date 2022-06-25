@@ -8,4 +8,8 @@
     <StartupObject>Checkers.Program</StartupObject>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAPICodePack-Shell" Version="1.1.0" />
+  </ItemGroup>
+
 </Project>
