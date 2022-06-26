@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Checkers.Models;
+using Checkers.Services.Styles;
 using Checkers.ViewModels;
 
 namespace Checkers.Views
@@ -19,12 +20,15 @@ namespace Checkers.Views
     /// <summary>
     /// Interaction logic for GameWithAIWindow.xaml
     /// </summary>
-    public partial class GameWithAIWindow : Window
+    public partial class GameWithAIWindow : WindowBase
     {
+        public static IStyle GameStyle { get; set; } = new BasePaletteStyle();
+
         public GameWithAIWindow()
         {
             InitializeComponent();
-            DataContext = new GameWithAIViewModel(new GameWithAIModel() { View = this});
+            Style = GameStyle;
+            DataContext = new GameWithAIViewModel(new GameWithAIModel() { View = this });
         }
     }
 }

@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Checkers.Services.Logger;
 using Checkers.Services.Styles;
+using Checkers.Views;
 
 namespace Checkers.ViewModels.Commands
 {
     public class ChangeStyleCommand : ICommand
     {
+        private Logger _logger;
+
         public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
@@ -18,7 +22,7 @@ namespace Checkers.ViewModels.Commands
 
         public ChangeStyleCommand()
         {
-           
+            _logger = new Logger(new FileLog("D:\\fileLogs.txt"));
         }
 
         public bool CanExecute(object? parameter)
@@ -28,34 +32,53 @@ namespace Checkers.ViewModels.Commands
 
         public void Execute(object? parameter)
         {
-            var mainWindow = MainWindow.Instance;
+            TryChangeStyles();
+        }
 
-            if (mainWindow.Style.Style == Style.Green)
+        private void TryChangeStyles()
+        {
+            try
             {
-                mainWindow.Style = new PacificPaletteStyle();
-            }
-            else if (mainWindow.Style.Style == Style.Pacific)
-            {
-                mainWindow.Style = new BasePaletteStyle();
-            }
-            else if (mainWindow.Style.Style == Style.Base)
-            {
-                mainWindow.Style = new GreenPaletteStyle();
-            }
-            else
-            {
-                return;
-            }
+                var mainWindow = MainWindow.Instance;
+               
+                var statisticsWindow = StatisticsWindow.Instance;
 
-            mainWindow.Style.ChangeButtonStyle(mainWindow.Play);
-            mainWindow.Style.ChangeButtonStyle(mainWindow.Stats);
-            mainWindow.Style.ChangeButtonStyle(mainWindow.Styles);
-            mainWindow.Style.ChangeButtonStyle(mainWindow.Exit);
+                switch (mainWindow.Style.Style)
+                {
+                    case Style.Green:
+                        mainWindow.Style = new PacificPaletteStyle();
+                        statisticsWindow.Style = new PacificPaletteStyle();
+                        break;
+                    case Style.Pacific:
+                        mainWindow.Style = new BasePaletteStyle();
+                        statisticsWindow.Style = new BasePaletteStyle();
+                        break;
+                    case Style.Base:
+                        mainWindow.Style = new GreenPaletteStyle();
+                        statisticsWindow.Style = new GreenPaletteStyle();
+                        break;
+                    default:
+                        return;
+                }
 
-            mainWindow.Style.ChangeGridStyle(mainWindow.Grid);
+                mainWindow.Style.ChangeButtonStyle(mainWindow.Play);
+                mainWindow.Style.ChangeButtonStyle(mainWindow.Stats);
+                mainWindow.Style.ChangeButtonStyle(mainWindow.Styles);
+                mainWindow.Style.ChangeButtonStyle(mainWindow.Exit);
+                mainWindow.Style.ChangeGridStyle(mainWindow.Grid);
+                mainWindow.Style.ChangeNameStyle(mainWindow.Name);
+                mainWindow.Style.ChangeSubNameStyle(mainWindow.SubName);
 
-            mainWindow.Style.ChangeNameStyle(mainWindow.Name);
-            mainWindow.Style.ChangeSubNameStyle(mainWindow.SubName);
+                statisticsWindow.Style.ChangeGridStyle(statisticsWindow.Grid);
+                statisticsWindow.Style.ChangeButtonStyle(statisticsWindow.MainMenu);
+                statisticsWindow.Style.ChangeButtonStyle(statisticsWindow.Import);
+                statisticsWindow.Style.ChangeButtonStyle(statisticsWindow.Json);
+                statisticsWindow.Style.ChangeButtonStyle(statisticsWindow.Xml);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+            }
         }
     }
 }

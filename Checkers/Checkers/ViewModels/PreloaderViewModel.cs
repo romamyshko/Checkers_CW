@@ -23,6 +23,7 @@ namespace Checkers.ViewModels
         public PreloaderViewModel(PreloaderModel gamePreloaderModel)
         {
             _gamePreloaderModel = gamePreloaderModel;
+            
 
             ExitCommand = new ExitCommand();
             GameWithAICommand = new GameWithAICommand(_gamePreloaderModel);

@@ -33,21 +33,8 @@ namespace Checkers.ViewModels.Commands
 
         public void Execute(object? parameter)
         {
-            
-            if (_view is GameWithAIWindow g)
-            {
-                var time = TimeSpan.Parse(g.TextBlockTimePassed.Text);
-                var winner = int.Parse(g.ScoreBlacksTaked.Text) - 12 == 0;
-            }
+          _view.Close();
 
-
-            _view.Close();
-
-            if (_view is GameWithAIWindow h)
-            {
-                var time = TimeSpan.Parse(h.TextBlockTimePassed.Text);
-                var winner = int.Parse(h.ScoreBlacksTaked.Text) - 12 == 0;
-            }
             MainWindow.Instance.DataContext = new PreloaderViewModel(new PreloaderModel(new GameWithAIModel()));
             MainWindow.Instance.Show();
         }

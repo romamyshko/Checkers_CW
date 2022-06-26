@@ -1,4 +1,4 @@
-﻿<Window x:Class="Checkers.Views.StatisticsWindow"
+﻿<local:WindowBase x:Class="Checkers.Views.StatisticsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,8 +13,9 @@
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
         Tag="Statistics"
-        ResizeMode="NoResize">
-    <Grid>
+        ResizeMode="NoResize"
+        >
+    <Grid Background="#FFB94E" x:Name="Grid">
         <DataGrid 
             x:Name="DataGridStatistics"
             ItemsSource="{Binding Path=User}"
@@ -40,13 +41,13 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Main menu" MaxWidth="150" Width="100" MinHeight="30" Padding="10 5" Height="30" Background="#F97134" FontWeight="Heavy" 
+        <Button Content="Main menu" x:Name="MainMenu" MaxWidth="150" Width="100" MinHeight="30" Padding="10 5" Height="30" Background="#F97134" FontWeight="Heavy" 
                 Foreground="#6F0B5B" Command="{Binding ExitToMenuCommand}" Margin="564,48,136,356"/>
-        <Button Content="Import" MaxWidth="200" Width="100" MinHeight="30" Height="30" Padding="10 5" Background="#F97134" FontWeight="Heavy" 
-                Foreground="#6F0B5B" Command="{Binding ImportUsersDataCommand}" Margin="153,48,547,356"/>
-        <Button Content="JSON" MaxWidth="200" Width="100" MinHeight="30" Height="30" Padding="10 5" Background="#F97134" FontWeight="Heavy" 
+        <Button Content="Import" x:Name="Import" MaxWidth="200" Width="100" MinHeight="30" Height="30" Padding="10 5" Background="#F97134" FontWeight="Heavy" 
+                Foreground="#6F0B5B"  Command="{Binding ImportUsersDataCommand}" Margin="153,48,547,356"/>
+        <Button Content="JSON" x:Name="Json" MaxWidth="200" Width="100" MinHeight="30" Height="30" Padding="10 5" Background="#F97134" FontWeight="Heavy" 
                 Foreground="#6F0B5B" Command="{Binding ExportUsersInJSONCommand}" Margin="285,48,415,356"/>
-        <Button Content="XML" MaxWidth="200" Width="100" MinHeight="30" Height="30" Padding="10 5" Background="#F97134" FontWeight="Heavy" 
+        <Button Content="XML" x:Name="Xml" MaxWidth="200" Width="100" MinHeight="30" Height="30" Padding="10 5" Background="#F97134" FontWeight="Heavy" 
                 Foreground="#6F0B5B" Command="{Binding ExportUsersInXMLCommand}" Margin="424,48,276,356"/>
     </Grid>
-</Window>
+</local:WindowBase>

@@ -19,13 +19,16 @@ namespace Checkers.Views
     /// <summary>
     /// Interaction logic for StatisticsWindow.xaml
     /// </summary>
-    public partial class StatisticsWindow : Window
+    public partial class StatisticsWindow : WindowBase
     {
+        public static StatisticsWindow Instance { get; private set; }
+
         public StatisticsWindow()
         {
             InitializeComponent();
             StatisticsModel.View = this;
             StatisticsModel.UpdateGrid();
+            Instance = this;
             DataContext = new StatisticsViewModel();
         }
 
