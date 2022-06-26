@@ -14,14 +14,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Checkers.Models;
+using Checkers.Services.Styles;
 using Checkers.ViewModels;
+using Checkers.Views;
 
 namespace Checkers
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : WindowBase
     {
         public static MainWindow Instance { get; private set; }
 
@@ -29,6 +31,7 @@ namespace Checkers
         {
             InitializeComponent();
             Instance = this;
+            Style = new BasePaletteStyle();
             DataContext = new PreloaderViewModel(new PreloaderModel(new GameWithAIModel()));
         }
     }

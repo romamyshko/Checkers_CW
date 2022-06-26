@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Checkers.Services.Styles;
 
 namespace Checkers.ViewModels.Commands
 {
@@ -27,7 +28,34 @@ namespace Checkers.ViewModels.Commands
 
         public void Execute(object? parameter)
         {
-            
+            var mainWindow = MainWindow.Instance;
+
+            if (mainWindow.Style.Style == Style.Green)
+            {
+                mainWindow.Style = new PacificPaletteStyle();
+            }
+            else if (mainWindow.Style.Style == Style.Pacific)
+            {
+                mainWindow.Style = new BasePaletteStyle();
+            }
+            else if (mainWindow.Style.Style == Style.Base)
+            {
+                mainWindow.Style = new GreenPaletteStyle();
+            }
+            else
+            {
+                return;
+            }
+
+            mainWindow.Style.ChangeButtonStyle(mainWindow.Play);
+            mainWindow.Style.ChangeButtonStyle(mainWindow.Stats);
+            mainWindow.Style.ChangeButtonStyle(mainWindow.Styles);
+            mainWindow.Style.ChangeButtonStyle(mainWindow.Exit);
+
+            mainWindow.Style.ChangeGridStyle(mainWindow.Grid);
+
+            mainWindow.Style.ChangeNameStyle(mainWindow.Name);
+            mainWindow.Style.ChangeSubNameStyle(mainWindow.SubName);
         }
     }
 }
