@@ -7,6 +7,7 @@ using Checkers.Models;
 using Checkers.Views;
 using System.Windows;
 using System.Windows.Input;
+using Checkers.Services.Commands;
 using Checkers.ViewModels.Commands;
 
 namespace Checkers.ViewModels
@@ -14,19 +15,14 @@ namespace Checkers.ViewModels
     public class PreloaderViewModel : ViewModelBase
     {
         public ICommand ExitCommand { get; set; }
-        public ICommand GameWithAICommand { get; set; }
+        public ICommand InputFormCommand { get; set; }
         public ICommand ChangeStyleCommand { get; set; }
         public ICommand StatisticsCommand { get; set; }
 
-        private readonly PreloaderModel _gamePreloaderModel;
-        
-        public PreloaderViewModel(PreloaderModel gamePreloaderModel)
+        public PreloaderViewModel()
         {
-            _gamePreloaderModel = gamePreloaderModel;
-            
-
             ExitCommand = new ExitCommand();
-            GameWithAICommand = new GameWithAICommand(_gamePreloaderModel);
+            InputFormCommand = new InputFormCommand();
             ChangeStyleCommand = new ChangeStyleCommand();
             StatisticsCommand = new StatisticsCommand(new StatisticsWindow());
         }

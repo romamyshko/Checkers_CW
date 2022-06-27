@@ -35,7 +35,7 @@ namespace Checkers.ViewModels.Commands
         {
           _view.Close();
 
-            MainWindow.Instance.DataContext = new PreloaderViewModel(new PreloaderModel(new GameWithAIModel()));
+            MainWindow.Instance.DataContext = new PreloaderViewModel();
             MainWindow.Instance.Show();
         }
     }

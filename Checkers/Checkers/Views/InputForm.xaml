@@ -1,0 +1,18 @@
+﻿<Window x:Class="Checkers.Views.InputForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Checkers.Views"
+        mc:Ignorable="d"
+        Title="InputForm" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid>
+        <TextBlock Text="Enter your name:" FontWeight="Bold" FontSize="36" Margin="250,72,250,290"></TextBlock>
+        <TextBox x:Name="TextBox" MaxHeight="50" MaxWidth="450" Margin="231,163,231,163"  Background="AliceBlue" BorderBrush="Black"/>
+        <Button Command="{Binding GameWithAICommand}" Content="OK" FontSize="24" FontWeight="DemiBold" Margin="250,280,411,101"></Button>
+        <Button Command="{Binding ExitToMenuCommand}" Content="Menu" FontSize="24" FontWeight="DemiBold" Margin="411,280,250,101"/>
+
+    </Grid>
+</Window>

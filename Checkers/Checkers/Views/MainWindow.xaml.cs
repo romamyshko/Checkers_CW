@@ -32,7 +32,7 @@ namespace Checkers
             InitializeComponent();
             Instance = this;
             Style = new BasePaletteStyle();
-            DataContext = new PreloaderViewModel(new PreloaderModel(new GameWithAIModel()));
+            DataContext = new PreloaderViewModel();
         }
     }
 }

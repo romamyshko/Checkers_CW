@@ -22,6 +22,7 @@ namespace Checkers.Models
         public Move CurrentMove { get; set; }
         public string Winner { get; set; }  
         public string Turn { get; set; }
+        public string Username { get; set; }
 
         private readonly ObservableCollection<HistoryMove> _observableHistoryMove;
         private readonly Logger _logger;
@@ -648,7 +649,7 @@ namespace Checkers.Models
 
                 var playerIsWinner = Winner.Equals("Black");
 
-                var user = new User(json.GetLastId() + 1, "Roma", playerIsWinner ? 1 : 0, playerIsWinner ? 0 : 1,
+                var user = new User(json.GetLastId() + 1, Username, playerIsWinner ? 1 : 0, playerIsWinner ? 0 : 1,
                     View.TextBlockTimePassed.Text);
 
                 json.WriteUser(user);

@@ -11,24 +11,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Checkers.Models;
-using Checkers.Services.Styles;
 using Checkers.ViewModels;
 
 namespace Checkers.Views
 {
     /// <summary>
-    /// Interaction logic for GameWithAIWindow.xaml
+    /// Interaction logic for InputForm.xaml
     /// </summary>
-    public partial class GameWithAIWindow : WindowBase
+    public partial class InputForm : Window
     {
-        public static IStyle GameStyle { get; set; } = new BasePaletteStyle();
-
-        public GameWithAIWindow()
+        public static InputForm Instance { get; set; }
+        public InputForm()
         {
+            Instance = this;
             InitializeComponent();
-            Style = GameStyle;
-            DataContext = new GameWithAIViewModel(new GameWithAIModel() { View = this});
+            DataContext = new InputFormViewModel();
         }
     }
 }

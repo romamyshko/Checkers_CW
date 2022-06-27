@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Checkers.Models;
+using Checkers.Views;
 
 namespace Checkers.ViewModels.Commands
 {
@@ -31,7 +32,7 @@ namespace Checkers.ViewModels.Commands
         public void Execute(object? parameter)
         {
             _gamePreloaderModel.StartNewGameWithAI();
-            MainWindow.Instance.Hide();
+            InputForm.Instance.Close();
         }
     }
 }

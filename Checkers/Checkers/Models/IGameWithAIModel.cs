@@ -12,6 +12,7 @@ namespace Checkers.Models
     public interface IGameWithAIModel
     {
         GameWithAIWindow View { get; set; }
+        string Username { get; set; }
         Move CurrentMove { get; set; }
         string Winner { get; set; }
         string Turn { get; set; }

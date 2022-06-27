@@ -44,7 +44,7 @@
             Foreground="#6F0B5B" 
             FontWeight="Heavy"
             Content="Play" 
-            Command="{Binding GameWithAICommand}"
+            Command="{Binding InputFormCommand}"
         />
 
         <Button 

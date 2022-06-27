@@ -24,6 +24,7 @@ namespace Checkers.Models
             try
             {
                 _gameWithAIModel.InitializeView(new GameWithAIWindow());
+                _gameWithAIModel.Username = InputForm.Instance.TextBox.Text;
                 _gameWithAIModel.View.Show();
             }
             catch (Exception e)
