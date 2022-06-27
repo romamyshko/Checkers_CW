@@ -22,13 +22,10 @@ namespace Checkers.Views
     /// </summary>
     public partial class GameWithAIWindow : WindowBase
     {
-        public static IStyle GameStyle { get; set; } = new BasePaletteStyle();
-
-        public GameWithAIWindow()
+        public GameWithAIWindow(MainWindow mainWindow)
         {
             InitializeComponent();
-            Style = GameStyle;
-            DataContext = new GameWithAIViewModel(new GameWithAIModel() { View = this});
+            DataContext = new GameWithAIViewModel(new GameWithAIModel { View = this}, mainWindow);
         }
     }
 }

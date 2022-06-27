@@ -19,12 +19,12 @@ namespace Checkers.ViewModels
         public ICommand ChangeStyleCommand { get; set; }
         public ICommand StatisticsCommand { get; set; }
 
-        public PreloaderViewModel()
+        public PreloaderViewModel(MainWindow mainWindow, StatisticsWindow statisticsWindow)
         {
             ExitCommand = new ExitCommand();
-            InputFormCommand = new InputFormCommand();
-            ChangeStyleCommand = new ChangeStyleCommand();
-            StatisticsCommand = new StatisticsCommand(new StatisticsWindow());
+            InputFormCommand = new InputFormCommand() {MainWindow = mainWindow };
+            ChangeStyleCommand = new ChangeStyleCommand() {MainWindow = mainWindow, StatisticsWindow = statisticsWindow };
+            StatisticsCommand = new StatisticsCommand(mainWindow, statisticsWindow);
         }
     }
 }

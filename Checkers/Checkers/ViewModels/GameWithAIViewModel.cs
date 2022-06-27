@@ -21,7 +21,7 @@ namespace Checkers.ViewModels
         public ICommand ExitToMenuCommand { get; set; }
         public ICommand NewGameCommand { get; set; }
 
-        public GameWithAIViewModel(IGameWithAIModel gameWithAIModel)
+        public GameWithAIViewModel(IGameWithAIModel gameWithAIModel, MainWindow mainWindow)
         {
             InfoPanelVisibility = 0;
             IsCheckInfoPanel = true;
@@ -30,7 +30,7 @@ namespace Checkers.ViewModels
             TimePassed = "00:00:00";
 
             ExitCommand = new ExitCommand();
-            ExitToMenuCommand = new ExitToMenuCommand(gameWithAIModel.View);
+            ExitToMenuCommand = new ExitToMenuCommand(gameWithAIModel.View){MainWindow = mainWindow};
             NewGameCommand = new NewGameCommand(gameWithAIModel, this);
         }
 

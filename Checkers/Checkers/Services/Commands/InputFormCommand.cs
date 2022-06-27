@@ -10,7 +10,11 @@ namespace Checkers.Services.Commands
 {
     public class InputFormCommand : ICommand
     {
+        public MainWindow MainWindow { get; set; }
+        public StatisticsWindow StatisticsWindow { get; set; }
+
         public event EventHandler? CanExecuteChanged;
+
 
         public bool CanExecute(object? parameter)
         {
@@ -19,9 +23,9 @@ namespace Checkers.Services.Commands
 
         public void Execute(object? parameter)
         {
-            var inputForm = new InputForm();
+            var inputForm = new InputForm(MainWindow);
             inputForm.Show();
-            MainWindow.Instance.Hide();
+            MainWindow.Hide();
         }
     }
 }

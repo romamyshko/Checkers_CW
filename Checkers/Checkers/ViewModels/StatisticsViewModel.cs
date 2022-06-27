@@ -18,9 +18,9 @@ namespace Checkers.ViewModels
         public ICommand ExportUsersInJSONCommand { get; set; }
         public ICommand ExportUsersInXMLCommand { get; set; }
 
-        public StatisticsViewModel()
+        public StatisticsViewModel(StatisticsWindow statisticsWindow, MainWindow mainWindow)
         {
-            ExitToMenuCommand = new ExitToMenuCommand(StatisticsModel.View);
+            ExitToMenuCommand = new ExitToMenuCommand(statisticsWindow) {MainWindow = mainWindow };
             ImportUsersDataCommand = new ImportUsersDataCommand();
             ExportUsersInJSONCommand = new ExportUsersInJSONCommand();
             ExportUsersInXMLCommand = new ExportUsersInXMLCommand();

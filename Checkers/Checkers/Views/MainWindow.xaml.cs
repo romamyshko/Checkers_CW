@@ -25,14 +25,12 @@ namespace Checkers
     /// </summary>
     public partial class MainWindow : WindowBase
     {
-        public static MainWindow Instance { get; private set; }
-
         public MainWindow()
         {
             InitializeComponent();
-            Instance = this;
             Style = new BasePaletteStyle();
-            DataContext = new PreloaderViewModel();
+
+            DataContext = new PreloaderViewModel (this,  new StatisticsWindow(this));
         }
     }
 }

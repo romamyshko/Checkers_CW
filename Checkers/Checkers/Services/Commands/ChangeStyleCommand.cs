@@ -12,7 +12,10 @@ namespace Checkers.ViewModels.Commands
 {
     public class ChangeStyleCommand : ICommand
     {
-        private Logger _logger;
+        public MainWindow MainWindow { get; set; }
+        public  StatisticsWindow StatisticsWindow { get; set; }
+
+        private readonly Logger _logger;
 
         public event EventHandler? CanExecuteChanged
         {
@@ -39,41 +42,33 @@ namespace Checkers.ViewModels.Commands
         {
             try
             {
-                var mainWindow = MainWindow.Instance;
-               
-                var statisticsWindow = StatisticsWindow.Instance;
-
-                switch (mainWindow.Style.Style)
+                switch (MainWindow.Style.Style)
                 {
                     case Style.Green:
-                        mainWindow.Style = new PacificPaletteStyle();
-                        statisticsWindow.Style = new PacificPaletteStyle();
+                        MainWindow.Style = new PacificPaletteStyle();
+                        StatisticsWindow.Style = new PacificPaletteStyle();
                         break;
                     case Style.Pacific:
-                        mainWindow.Style = new BasePaletteStyle();
-                        statisticsWindow.Style = new BasePaletteStyle();
+                        MainWindow.Style = new BasePaletteStyle();
+                        StatisticsWindow.Style = new BasePaletteStyle();
                         break;
                     case Style.Base:
-                        mainWindow.Style = new GreenPaletteStyle();
-                        statisticsWindow.Style = new GreenPaletteStyle();
+                        MainWindow.Style = new GreenPaletteStyle();
+                        StatisticsWindow.Style = new GreenPaletteStyle();
                         break;
                     default:
                         return;
                 }
 
-                mainWindow.Style.ChangeButtonStyle(mainWindow.Play);
-                mainWindow.Style.ChangeButtonStyle(mainWindow.Stats);
-                mainWindow.Style.ChangeButtonStyle(mainWindow.Styles);
-                mainWindow.Style.ChangeButtonStyle(mainWindow.Exit);
-                mainWindow.Style.ChangeGridStyle(mainWindow.Grid);
-                mainWindow.Style.ChangeNameStyle(mainWindow.Name);
-                mainWindow.Style.ChangeSubNameStyle(mainWindow.SubName);
+                MainWindow.Style.ChangeButtonStyle(MainWindow.Play);
+                MainWindow.Style.ChangeButtonStyle(MainWindow.Stats);
+                MainWindow.Style.ChangeButtonStyle(MainWindow.Styles);
+                MainWindow.Style.ChangeButtonStyle(MainWindow.Exit);
+                MainWindow.Style.ChangeGridStyle(MainWindow.Grid);
+                MainWindow.Style.ChangeNameStyle(MainWindow.Name);
+                MainWindow.Style.ChangeSubNameStyle(MainWindow.SubName);
 
-                statisticsWindow.Style.ChangeGridStyle(statisticsWindow.Grid);
-                statisticsWindow.Style.ChangeButtonStyle(statisticsWindow.MainMenu);
-                statisticsWindow.Style.ChangeButtonStyle(statisticsWindow.Import);
-                statisticsWindow.Style.ChangeButtonStyle(statisticsWindow.Json);
-                statisticsWindow.Style.ChangeButtonStyle(statisticsWindow.Xml);
+                StatisticsWindow.ApplyTheStyles();
             }
             catch (Exception e)
             {

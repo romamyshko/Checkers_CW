@@ -13,11 +13,12 @@ namespace Checkers.ViewModels.Commands
 {
     public class ExitToMenuCommand : ICommand
     {
-        private readonly Window _view;
+        private readonly Window _viewToClose;
+        public MainWindow MainWindow { get; set; }
 
-        public ExitToMenuCommand(Window view)
+        public ExitToMenuCommand(Window viewToClose)
         {
-            _view = view;
+            _viewToClose = viewToClose;
         }
 
         public event EventHandler? CanExecuteChanged
@@ -33,10 +34,13 @@ namespace Checkers.ViewModels.Commands
 
         public void Execute(object? parameter)
         {
-          _view.Close();
+            var statistics = new StatisticsWindow(MainWindow) {Style = MainWindow.Style};
+            statistics.ApplyTheStyles();
 
-            MainWindow.Instance.DataContext = new PreloaderViewModel();
-            MainWindow.Instance.Show();
+            _viewToClose.Close();
+
+            MainWindow.DataContext = new PreloaderViewModel(MainWindow, statistics);
+            MainWindow.Show();
         }
     }
 }

@@ -18,14 +18,12 @@ namespace Checkers.Views
     /// <summary>
     /// Interaction logic for InputForm.xaml
     /// </summary>
-    public partial class InputForm : Window
+    public partial class InputForm : WindowBase
     {
-        public static InputForm Instance { get; set; }
-        public InputForm()
+        public InputForm(MainWindow mainWindow)
         {
-            Instance = this;
             InitializeComponent();
-            DataContext = new InputFormViewModel();
+            DataContext = new InputFormViewModel(mainWindow, this);
         }
     }
 }

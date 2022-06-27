@@ -21,16 +21,22 @@ namespace Checkers.Views
     /// </summary>
     public partial class StatisticsWindow : WindowBase
     {
-        public static StatisticsWindow Instance { get; private set; }
-
-        public StatisticsWindow()
+        public StatisticsWindow(MainWindow mainWindow)
         {
             InitializeComponent();
             StatisticsModel.View = this;
             StatisticsModel.UpdateGrid();
-            Instance = this;
-            DataContext = new StatisticsViewModel();
+            DataContext = new StatisticsViewModel(this, mainWindow);
         }
 
+
+        public void ApplyTheStyles()
+        {
+            Style.ChangeGridStyle(Grid);
+            Style.ChangeButtonStyle(MainMenu);
+            Style.ChangeButtonStyle(Import);
+            Style.ChangeButtonStyle(Json);
+            Style.ChangeButtonStyle(Xml);
+        }
     }
 }

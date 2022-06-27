@@ -11,7 +11,8 @@ namespace Checkers.ViewModels.Commands
 {
     public class StatisticsCommand : ICommand
     {
-        private readonly StatisticsWindow _view;
+        private readonly StatisticsWindow _statisticsWindow;
+        private readonly MainWindow _mainWindow;
 
         public event EventHandler? CanExecuteChanged
         {
@@ -19,9 +20,10 @@ namespace Checkers.ViewModels.Commands
             remove => CommandManager.RequerySuggested -= value;
         }
 
-        public StatisticsCommand(StatisticsWindow view)
+        public StatisticsCommand(MainWindow mainWindow, StatisticsWindow statisticsWindow)
         {
-            _view = view;
+            _statisticsWindow = statisticsWindow;
+            _mainWindow = mainWindow;
         }
 
         public bool CanExecute(object? parameter)
@@ -31,8 +33,8 @@ namespace Checkers.ViewModels.Commands
 
         public void Execute(object? parameter)
         {
-            _view.Show();
-            MainWindow.Instance.Hide();
+            _statisticsWindow.Show();
+            _mainWindow.Hide();
         }
     }
 }

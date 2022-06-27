@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Checkers.ViewModels.Commands.ChangeStyleCommand" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQBCAAQAAEAEAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Commands\ChangeStyleCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Checkers.ViewModels.Commands.ExitToMenuCommand" BaseTypeListCollapsed="true">
+    <Position X="5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAACAAQAAEAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Commands\ExitToMenuCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Checkers.ViewModels.Commands.GameWithAICommand" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAACAAQAAEAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Commands\GameWithAICommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Checkers.ViewModels.Commands.NewGameCommand" BaseTypeListCollapsed="true">
+    <Position X="5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAABAAAAABAA=</HashCode>
+      <FileName>Services\Commands\NewGameCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Checkers.ViewModels.Commands.StatisticsCommand" BaseTypeListCollapsed="true">
+    <Position X="3" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAACAAQAAEABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Commands\StatisticsCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Checkers.Services.Commands.ExportUsersInJSONCommand" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Commands\ExportUsersInJSONCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Checkers.Services.Commands.ExportUsersInXMLCommand" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Commands\ExportUsersInXMLCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Checkers.Services.Commands.InputFormCommand" BaseTypeListCollapsed="true">
+    <Position X="3" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABCAAQAAEAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Commands\InputFormCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Checkers.ViewModels.GameWithAIViewModel">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAEICBCAABgAAAAAAAAAASEAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\GameWithAIViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ExitCommand" />
+      <Property Name="ExitToMenuCommand" />
+      <Property Name="NewGameCommand" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Checkers.ViewModels.InputFormViewModel">
+    <Position X="10.75" Y="6.5" Width="1.5" />
+    <AssociationLine Name="ExitToMenuCommand" Type="System.Windows.Input.ICommand">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.348" Y="0.185" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="GameWithAICommand" Type="System.Windows.Input.ICommand">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.907" Y="0.718" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAEAABAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\InputFormViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ExitToMenuCommand" />
+      <Property Name="GameWithAICommand" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Checkers.ViewModels.PreloaderViewModel">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <AssociationLine Name="ChangeStyleCommand" Type="System.Windows.Input.ICommand" FixedToPoint="true">
+      <Path>
+        <Point X="14" Y="1.733" />
+        <Point X="14" Y="3.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.815" Y="0.71" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ExitCommand" Type="System.Windows.Input.ICommand" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.211" Y="1.733" />
+        <Point X="14.211" Y="2.108" />
+        <Point X="15.375" Y="2.108" />
+        <Point X="15.375" Y="3.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.457" Y="0.452" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="InputFormCommand" Type="System.Windows.Input.ICommand" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.242" Y="1.733" />
+        <Point X="13.242" Y="2.108" />
+        <Point X="11.438" Y="2.108" />
+        <Point X="11.438" Y="3.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.615" Y="0.652" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="StatisticsCommand" Type="System.Windows.Input.ICommand" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.551" Y="1.733" />
+        <Point X="13.551" Y="2.108" />
+        <Point X="12.438" Y="2.108" />
+        <Point X="12.438" Y="3.25" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.782" Y="0.268" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIBAAAAAAAAAICAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\PreloaderViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ChangeStyleCommand" />
+      <Property Name="ExitCommand" />
+      <Property Name="InputFormCommand" />
+      <Property Name="StatisticsCommand" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Checkers.ViewModels.StatisticsViewModel">
+    <Position X="13.75" Y="6.5" Width="1.5" />
+    <AssociationLine Name="ExitToMenuCommand" Type="System.Windows.Input.ICommand" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.312" Y="6.5" />
+        <Point X="13.642" Y="6.376" />
+        <Point X="13.642" Y="4.997" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.573" Y="0.202" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ExportUsersInXMLCommand" Type="System.Windows.Input.ICommand" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.98" Y="6.5" />
+        <Point X="14.98" Y="6.43" />
+        <Point X="15.097" Y="6.43" />
+        <Point X="15.097" Y="4.997" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.09" Y="0.835" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ExportUsersInJSONCommand" Type="System.Windows.Input.ICommand" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.688" Y="6.5" />
+        <Point X="14.688" Y="6.125" />
+        <Point X="13.969" Y="6.125" />
+        <Point X="13.969" Y="4.997" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.065" Y="1.068" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ImportUsersDataCommand" Type="System.Windows.Input.ICommand" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.875" Y="6.5" />
+        <Point X="14.875" Y="6.176" />
+        <Point X="14.622" Y="6.176" />
+        <Point X="14.622" Y="4.997" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.932" Y="0.46" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAIAAAAAAAAAAAAgAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\StatisticsViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ExitToMenuCommand" />
+      <Property Name="ExportUsersInXMLCommand" />
+      <Property Name="ExportUsersInJSONCommand" />
+      <Property Name="ImportUsersDataCommand" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="System.Windows.Input.ICommand">
+    <Position X="11" Y="3.25" Width="4.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

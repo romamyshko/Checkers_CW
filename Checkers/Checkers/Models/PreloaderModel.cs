@@ -19,12 +19,12 @@ namespace Checkers.Models
             _logger = new Logger(new FileLog("D:\\fileLogs.txt"));
         }
 
-        public void StartNewGameWithAI()
+        public void StartNewGameWithAI(InputForm inputForm, MainWindow mainWindow)
         {
             try
             {
-                _gameWithAIModel.InitializeView(new GameWithAIWindow());
-                _gameWithAIModel.Username = InputForm.Instance.TextBox.Text;
+                _gameWithAIModel.InitializeView(new GameWithAIWindow(mainWindow));
+                _gameWithAIModel.Username = inputForm.TextBox.Text;
                 _gameWithAIModel.View.Show();
             }
             catch (Exception e)
