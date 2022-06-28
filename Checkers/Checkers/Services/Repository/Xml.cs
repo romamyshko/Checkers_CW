@@ -21,13 +21,12 @@ namespace Checkers.Services.Repository
         protected override string SerializeUsers(List<User> users)
         {
             var serializer = new XmlSerializer(typeof(List<User>));
-
-            using (var writer = XmlWriter.Create(FilePath, new XmlWriterSettings(){Indent = true, IndentChars = "\t"}))
+            using (var writer = XmlWriter.Create("../temp.json", new XmlWriterSettings(){Indent = true, IndentChars = "\t"}))
             {
                 serializer.Serialize(writer, users);
             }
 
-            return File.ReadAllText(FilePath);
+            return File.ReadAllText("../temp.json");
         }
 
         protected override List<User> DeserializeUsers(string serializedUsers)

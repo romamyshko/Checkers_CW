@@ -31,10 +31,12 @@ namespace Checkers.Services.Commands
             {
                 var filePath = dialog.FileName;
 
+                filePath = filePath.TrimEnd('\\', '\\');
+
                 var data = exporter?.GetData();
                 var date = DateTime.Now.ToString().Replace('.', '_').Replace(':', '_');
 
-                exporter.ExportAllData($"{filePath}EXPORT_IN_JSON_{date}.json", data.ToList());
+                exporter.ExportAllData($"{filePath}\\EXPORT_IN_JSON_{date}.json", data.ToList());
             }
         }
     }

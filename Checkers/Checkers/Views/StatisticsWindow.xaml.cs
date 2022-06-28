@@ -34,7 +34,6 @@ namespace Checkers.Views
         {
             Style.ChangeGridStyle(Grid);
             Style.ChangeButtonStyle(MainMenu);
-            Style.ChangeButtonStyle(Import);
             Style.ChangeButtonStyle(Json);
             Style.ChangeButtonStyle(Xml);
         }

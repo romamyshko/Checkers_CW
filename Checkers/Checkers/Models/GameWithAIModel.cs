@@ -32,6 +32,7 @@ namespace Checkers.Models
         private string _timePassed;
         private readonly DispatcherTimer _commonTimer;
         private DateTime _commonTime;
+        private DBRepository _json;
 
         public GameWithAIModel()
         {
@@ -48,6 +49,7 @@ namespace Checkers.Models
             _commonTime = new DateTime();
             _timePassed = "00:00:00";
             _logger = new Logger(new AuditLog());
+            _json = new Json("D:\\users.json");
         }
 
         private void CommonTimerTick(object sender, EventArgs e)
@@ -644,17 +646,15 @@ namespace Checkers.Models
                 _timerMove.Tick -= TimerMove_Tick;
                 _commonTimer.Tick -= CommonTimerTick;
 
-                var json = new Json("D:\\users.json");
-                var xml = new Xml("D:\\users.xml");
+                
 
                 var playerIsWinner = Winner.Equals("Black");
 
-                var user = new User(json.GetLastId() + 1, Username, playerIsWinner ? 1 : 0, playerIsWinner ? 0 : 1,
+                var user = new User(_json.GetLastId() + 1, Username, playerIsWinner ? 1 : 0, playerIsWinner ? 0 : 1,
                     View.TextBlockTimePassed.Text);
 
-                json.WriteUser(user);
-                xml.WriteUser(user);
-
+                _json.WriteUser(user);
+                
                 MessageBox.Show(View, $"{Winner} wins!", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
             } 
         } 

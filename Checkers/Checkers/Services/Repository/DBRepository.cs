@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using Checkers.Models;
@@ -67,9 +66,9 @@ namespace Checkers.Services.Repository
             }
         }
 
-        public void WriteUser(User user)
+        public void WriteUser(User user, bool isStatistics = false)
         {
-            WriteUsers(new List<User>() {user});
+            WriteUsers(new List<User>() {user}, isStatistics);
         }
 
         public void WriteUsers(List<User> users, bool isStatistics = false)

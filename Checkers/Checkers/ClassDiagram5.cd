@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Checkers.Services.Repository.DBRepository">
+    <Position X="4.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAEAAAAAIACAAIAAAABgAAAAIEE=</HashCode>
+      <FileName>Services\Repository\DBRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Checkers.Services.Repository.Json">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAE=</HashCode>
+      <FileName>Services\Repository\Json.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Checkers.Services.Repository.Xml">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAE=</HashCode>
+      <FileName>Services\Repository\Xml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Checkers.Models.GameWithAIModel">
+    <Position X="1" Y="1" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>QAAAQEAAAAAkAREAQQCCBAEAJADBAkAAAABBEAAAIFA=</HashCode>
+      <FileName>Models\GameWithAIModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_json" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Checkers.ViewModels.Commands.ExitCommand" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Commands\ExitCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Checkers.ViewModels.Commands.NewGameCommand" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAABAAAAABAA=</HashCode>
+      <FileName>Services\Commands\NewGameCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Checkers.ViewModels.Commands.StatisticsCommand" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAACAAQAAEABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Commands\StatisticsCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Checkers.Services.Commands.ExportUsersInJSONCommand" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\Commands\ExportUsersInJSONCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

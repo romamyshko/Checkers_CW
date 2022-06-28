@@ -30,10 +30,12 @@ namespace Checkers.Services.Commands
             {
                 var filePath = dialog.FileName;
 
+                filePath = filePath.TrimEnd('\\', '\\');
+
                 var data = exporter?.GetData(true);
                 var date = DateTime.Now.ToString().Replace('.', '_').Replace(':', '_');
 
-                exporter.ExportAllData($"{filePath}EXPORT_IN_XML_{date}.xml", data.ToList());
+                exporter.ExportAllData($"{filePath}\\EXPORT_IN_XML_{date}.xml", data.ToList());
             }
         }
     }

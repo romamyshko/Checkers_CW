@@ -13,10 +13,10 @@ namespace Checkers.ViewModels.Commands
 {
     public class ExitToMenuCommand : ICommand
     {
-        private readonly Window _viewToClose;
+        private readonly WindowBase _viewToClose;
         public MainWindow MainWindow { get; set; }
 
-        public ExitToMenuCommand(Window viewToClose)
+        public ExitToMenuCommand(WindowBase viewToClose)
         {
             _viewToClose = viewToClose;
         }
