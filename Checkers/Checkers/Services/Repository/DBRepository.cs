@@ -77,8 +77,7 @@ namespace Checkers.Services.Repository
             {
                 if (File.Exists(FilePath))
                 {
-                    var currentData = GetData(true);
-                    users.AddRange(currentData);
+                    UpdateAllUsers(users);
                     File.Delete(FilePath);
                 }
 
@@ -139,5 +138,35 @@ namespace Checkers.Services.Repository
 
         protected abstract string SerializeUsers(List<User> users);
         protected abstract List<User> DeserializeUsers(string serializedUsers);
+
+        private void UpdateAllUsers(List<User> users)
+        {
+            var currentData = GetData(true);
+            var usersToRemove = new List<User>();
+
+
+            foreach (var user in currentData)
+            {
+                foreach (var newUser in users)
+                {
+                    if (newUser.Username == user.Username)
+                    {
+                        user.Loses += newUser.Loses;
+                        user.Wins += newUser.Wins;
+                        user.TotalTime =
+                            (TimeSpan.Parse(user.TotalTime) + TimeSpan.Parse(newUser.TotalTime)).ToString();
+
+                        usersToRemove.Add(newUser);
+                    }
+                }
+            }
+
+            foreach (var user in usersToRemove)
+            {
+                users.Remove(user);
+            }
+            
+            users.AddRange(currentData);
+        }
     }
 }
